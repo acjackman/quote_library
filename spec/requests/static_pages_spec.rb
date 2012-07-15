@@ -17,4 +17,12 @@ describe "Static pages" do
       page.should have_content('Help')
     end
   end
+  
+  describe "About page" do
+    
+    it "should have the content 'About this site'" do
+      visit '/static_pages/about'
+      page.should have_content('About this site')
+    end
+  end
 end
