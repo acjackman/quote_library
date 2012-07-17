@@ -8,13 +8,25 @@ describe "Static pages" do
       visit '/static_pages/home'
       page.should have_content('Quote')
     end
+    
+    it "should have the title 'Home'" do
+      visit '/static_pages/home'
+      page.should have_selector('title',
+                    text: "Adam's Quotes | Home")
+    end
   end
   
-  describe  "Help page" do
+  describe "Help page" do
     
     it "should have the content 'Help'" do
       visit '/static_pages/help'
       page.should have_content('Help')
+    end
+    
+    it "should have the title 'Help'" do
+      visit '/static_pages/help'
+      page.should have_selector('title',
+                    text: "Adam's Quotes | Help")
     end
   end
   
@@ -23,6 +35,12 @@ describe "Static pages" do
     it "should have the content 'About this site'" do
       visit '/static_pages/about'
       page.should have_content('About this site')
+    end
+    
+    it "should have the title 'About'" do
+      visit '/static_pages/about'
+      page.should have_selector('title',
+                    text: "Adam's Quotes | About")
     end
   end
 end
