@@ -9,7 +9,15 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
+  gem 'guard-rspec', '0.5.5'
 end
+
+# Test gems on Macintosh OS X
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'rb-fsevent'#,  '0.4.3.1', :require => false
+  gem 'growl', '1.0.3'
+end 
 
 # Gems used only for assets and not required
 # in production environments by default.
