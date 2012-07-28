@@ -12,6 +12,8 @@ group :development, :test do
   gem 'guard-rspec', '0.5.5'
 end
 
+gem 'annotate', '2.5.0', group: :development
+
 # Test gems on Macintosh OS X
 group :test do
   gem 'capybara', '1.1.2'
