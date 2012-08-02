@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120728202300) do
+ActiveRecord::Schema.define(:version => 20120802051606) do
+
+  create_table "authors", :force => true do |t|
+    t.string   "prefix"
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.string   "suffix"
+    t.date     "birthdate"
+    t.date     "deathdate"
+    t.boolean  "birthdateyear"
+    t.boolean  "deathdateyear"
+    t.string   "profession"
+    t.text     "bio"
+    t.text     "notes"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
