@@ -3,3 +3,18 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      author:
+        prefix: "Prefix"
+        firstname: "First Name"
+        middlename: "Middle Name"
+        lastname: "Last Name"
+        suffix: "Suffix"
+        birthdate: "Birth date"
+        deathdate: "Death date"
+        birthdateyear: "Birth day year only"
+        deathdateyear: "Death day year only"
+        profession: "Profession"
+        bio: "Biography"
+        notes: "Notes"

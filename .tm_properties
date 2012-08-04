@@ -1,2 +1,5 @@
 softWrap         = true
 tabSize          = 2
+
+[ *.erb ]
+fileType = text.html.erb.rails

@@ -9,4 +9,12 @@ FactoryGirl.define do
       admin true
     end
   end
+  
+  factory :author do
+    prefix "p"
+    firstname "f"
+    middlename "m"
+    lastname "l"
+    suffix "s"
+  end
 end
