@@ -31,4 +31,12 @@ describe Author do
     before { @author.lastname = "" }
     it { should_not be_valid }
   end
+  
+  describe "full_name" do
+    let(:long_name_author) { Author.new(prefix: "a", firstname: "b", middlename: "c", lastname: "d", suffix: "e") }
+    
+    it "should be formatted correctly" do
+      long_name_author.full_name.should eq("a b c d e")
+    end
+  end
 end
