@@ -21,4 +21,5 @@ doc/
 .project
 .DS_Store
 .idea
+.todo
 bundler_stubs/
