@@ -4,6 +4,27 @@ describe "Author pages" do
 
   subject { page }
 
+  describe "index" do
+    let(:author) { FactoryGirl.create(:author) }
+    
+    before(:all) { 30.times { FactoryGirl.create(:author) } }
+    after(:all)  { Author.delete_all } 
+    
+    before(:each) do
+      visit authors_path
+    end
+    
+    it { should have_selector('title', text: 'All Authors') }
+    it { should have_selector('h1',    text: 'All Authors') }
+    
+    it "should list each author" do
+      Author.all.each do |author|
+        page.should have_selector('li', text: author.full_name)
+      end
+    end
+  end
+
+
   describe "show" do
     let(:author) { FactoryGirl.create(:author) } # Create Author
     before { visit author_path(author) }

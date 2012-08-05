@@ -175,6 +175,21 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+/* Authors index */
+
+.authors {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
 /* miscellaneous */
 
 .debug_dump {
@@ -184,3 +199,5 @@ input, textarea, select, .uneditable-input {
   margin-top: 45px;
   @include box_sizing;
 }
+
+
