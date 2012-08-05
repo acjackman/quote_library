@@ -1,2 +1,14 @@
 <% provide(:title, @author.full_name) %>
 <h1><%= @author.full_name %></h1>
+
+<h2>Quotes</h2>
+
+<h2>Details</h2>
+  <p>
+    Profession: <%= @author.profession %><br />
+		Birth Date: <%= @author.birthdate %><br />
+		Death Date: <%= @author.deathdate %><br />
+  </p>
+		
+  <h3>Biography</h3><p><%= @author.bio %></p>
+	<h3>Notes</h3><p><%= @author.notes %></p>

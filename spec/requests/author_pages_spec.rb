@@ -25,13 +25,38 @@ describe "Author pages" do
   end
 
 
-  describe "show" do
+  describe "show page" do
     let(:author) { FactoryGirl.create(:author) } # Create Author
     before { visit author_path(author) }
-    
-    describe "page" do
       it { should have_selector('title', text: full_title(author.full_name)) }
       it { should have_selector('h1',    text: author.full_name) }
+      describe "details" do
+        it { should have_selector('h2',    text: "Details") }
+        it { should have_selector('h3',    text: "Biography") }
+        it { should have_selector('h3',    text: "Notes") }
+        pending "date formatting tests"
+      end
+      
+    describe "Quote List" do
+      it { should have_selector('h2',    text: "Quotes") }
+    end
+    
+    describe "delete links" do
+
+      it { should_not have_link('delete') }
+
+      describe "as an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit author_path(author)
+        end
+
+        it { should have_link('delete', href: author_path(author)) }
+        it "should be able to delete an author" do
+          expect { click_link('delete') }.to change(Author, :count).by(-1)
+        end
+      end
     end
   end
 
