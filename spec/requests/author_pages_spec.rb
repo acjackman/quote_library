@@ -28,21 +28,37 @@ describe "Author pages" do
   describe "show page" do
     let(:author) { FactoryGirl.create(:author) } # Create Author
     before { visit author_path(author) }
-      it { should have_selector('title', text: full_title(author.full_name)) }
-      it { should have_selector('h1',    text: author.full_name) }
-      describe "details" do
-        it { should have_selector('h2',    text: "Details") }
-        it { should have_selector('h3',    text: "Biography") }
-        it { should have_selector('h3',    text: "Notes") }
-        pending "date formatting tests"
+    
+    it { should have_selector('title', text: full_title(author.full_name)) }
+    it { should have_selector('h1',    text: author.full_name) }
+    describe "details" do
+      it { should have_selector('h2',    text: "Details") }
+      it { should have_selector('h3',    text: "Biography") }
+      it { should have_selector('h3',    text: "Notes") }
+      
+      describe "date formatting" do
+        it { should have_content(author.birthdate.strftime("%B %-d, %Y")) }
+        it { should have_content(author.deathdate.strftime("%B %-d, %Y")) }
+        
+        describe "nil dates" do
+          let(:nil_date_author) { FactoryGirl.create(:author, birthdate: nil, deathdate: nil) }
+          before { visit author_path(nil_date_author) }
+          it { should have_content("Birth Date: Unknown") }
+          it { should have_content("Death Date: Unknown") }
+        end
+        
+        # pending "Year only"
+        # pending "BC Date formatting"
       end
+    end
       
     describe "Quote List" do
       it { should have_selector('h2',    text: "Quotes") }
     end
     
-    describe "delete links" do
-
+    describe "Admin tasks" do
+      
+      it { should_not have_selector('h2', text: "Admin Tasks")}
       it { should_not have_link('delete') }
 
       describe "as an admin user" do
@@ -51,8 +67,11 @@ describe "Author pages" do
           sign_in admin
           visit author_path(author)
         end
-
+        
+        it { should have_selector('h2', text: "Admin Tasks")}
+        
         it { should have_link('delete', href: author_path(author)) }
+        it { should have_link('edit', href: edit_author_path(author)) }
         it "should be able to delete an author" do
           expect { click_link('delete') }.to change(Author, :count).by(-1)
         end
@@ -61,7 +80,12 @@ describe "Author pages" do
   end
 
   describe "create page" do
-    before { visit new_author_path }
+    let(:admin) { FactoryGirl.create(:admin) }
+    
+    before do
+      sign_in admin
+      visit new_author_path
+    end
 
     let(:submit) { "Create author" }
 
@@ -91,7 +115,12 @@ describe "Author pages" do
   
   describe "edit" do
     let(:author) { FactoryGirl.create(:author) }
-    before { visit edit_author_path(author) }
+    let(:admin) { FactoryGirl.create(:admin) }
+    
+    before do
+      sign_in admin
+      visit edit_author_path(author)
+    end
 
     describe "page" do
       it { should have_selector('h1',    text: ("Edit " + author.full_name)) }

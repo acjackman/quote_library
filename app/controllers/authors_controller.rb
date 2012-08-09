@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+  
+  before_filter :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @authors = Author.paginate(page: params[:page])
@@ -26,7 +28,6 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
   end
   
-  
   def update
     @author = Author.find(params[:id])
     if @author.update_attributes(params[:author])
@@ -35,5 +36,11 @@ class AuthorsController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    Author.find(params[:id]).destroy
+    flash[:success] = "Author destroyed."
+    redirect_to authors_path
   end
 end
