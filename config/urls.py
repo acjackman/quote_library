@@ -21,6 +21,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
 
+    url(r'authors/', include('quote_library.authors.urls', namespace='authors')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
