@@ -1,6 +1,0 @@
-softWrap         = true
-tabSize          = 2
-softTabs         = true
-
-[ *.erb ]
-fileType = text.html.erb.rails

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load markdown_deux_tags %}
+
+{% block title %}{{ object.full_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>{{ object.full_name }}</h1>
+
+<h2>Quote List</h2>
+
+<h2>Details</h2>
+<p>
+  Profession: <br />
+  Birth Date: {{ object.birth_date|date }}<br />
+  Death Date: {{ object.death_date|date }}<br />
+</p>
+<h3>Biography</h3>
+{{ object.bio|markdown }}
+<h3>Notes</h3>
+{{ object.notes|markdown }}
+
+{% if request.user.is_staff %}
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <a class="btn btn-primary" href="{% url 'authors:update' object.pk %}" role="button">Update</a>
+    <a class="btn btn-danger" href="{% url 'authors:delete' object.pk %}" role="button">Delete</a>
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+</div>
+{% endblock content %}
+
+

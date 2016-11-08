@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -43,3 +44,6 @@ class Author(models.Model):
             post_name = " " + self.suffix
 
         return name + self.last_name + post_name
+
+    def get_absolute_url(self):
+        return reverse('authors:detail', args=[str(self.id)])

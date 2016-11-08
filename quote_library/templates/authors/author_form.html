@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load markdown_deux_tags %}
+
+{% block title %}Create New Author{% endblock %}
+
+{% block content %}
+<div class="container">
+<form class="form-horizontal" method="post" action="">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn">Save</button>
+      </div>
+    </div>
+</form>
+</div>
+{% endblock content %}
