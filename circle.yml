@@ -2,6 +2,8 @@ machine:
   services:
     - docker
     - postgresql
+  python:
+    - 3.5
   environment:
     AWS_DEFAULT_REGION: us-west-2
     DATABASE_URL: postgres://ubuntu@127.0.0.1/circle_test
@@ -22,7 +24,7 @@ test:
     - py.test --junitxml==$CIRCLE_TEST_REPORTS/django/result.xml
   post:
     - docker run -d -p 8000:8000 quote_library:$CIRCLE_SHA1; sleep 10
-    - cturl --retry 10 --retry-delay 5 -v http://localhost:8000/health/
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8000/health/
 
 
 deployment:
