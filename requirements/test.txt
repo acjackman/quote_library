@@ -12,4 +12,4 @@ pytest-sugar==0.7.1
 
 
 # CircleCI
-pytest-circleci
+# pytest-circleci # Doesn't support python 3
