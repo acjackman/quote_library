@@ -1,7 +1,7 @@
 machine:
   services:
     - docker
-    - postgres
+    - postgresql
   environment:
     AWS_DEFAULT_REGION: us-west-2
     DATABASE_URL: postgres://ubuntu@127.0.0.1/circle_test
