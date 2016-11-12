@@ -21,9 +21,6 @@ test:
     - mkdir -p $CIRCLE_TEST_REPORTS/django
   override:
     - pytest quote_library/ --junitxml=$CIRCLE_TEST_REPORTS/django/result.xml
-  post:
-    - docker run -d -p 5000:5000 quote_library:$CIRCLE_SHA1; sleep 10
-    - curl --retry 10 --retry-delay 5 -v http://localhost:5000/health/
 
 
 deployment:
