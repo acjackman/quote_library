@@ -19,10 +19,6 @@ django-crispy-forms==1.6.1
 # Models
 django-model-utils==2.6
 
-
-# Views
-django-braces==1.10.0
-
 # Images
 Pillow==3.4.2
 
