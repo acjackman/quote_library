@@ -28,13 +28,13 @@ deployment:
     branch: master
     commands:
       # Push new version as latest
-      - compose/push_to_registry.sh "$CIRCLE_SHA1" "latest"
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "latest"
       # Push new version tagged with the commit SHA1 for historical reference
-      - compose/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"
   staging:
     branch: django
     commands:
       # Push new version as latest
-      - compose/push_to_registry.sh "$CIRCLE_SHA1" "latest"
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "latest"
       # Push new version tagged with the commit SHA1 for historical reference
-      - compose/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"
