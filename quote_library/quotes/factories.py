@@ -18,15 +18,20 @@ class QuoteFactory(DjangoModelFactory):
     class Meta:
         model = Quote
 
-    text = factory.LazyAttribute(lambda x: fake.sentences(nb=3))
+    text = factory.LazyAttribute(lambda x: ' '.join(fake.sentences(nb=3)))
     author = factory.SubFactory(AuthorFactory)
     verified = False
 
 
+class ParagraphQuoteFactory(QuoteFactory):
+
+    text = factory.LazyAttribute(lambda x: '\n'.join(fake.sentences(nb=3)))
+
+
 class DetailedQuoteFactory(QuoteFactory):
     date = factory.LazyAttribute(lambda x: fake.date_time())
-    source = factory.LazyAttribute(lambda x: fake.sentences(nb=1))
-    reference = factory.LazyAttribute(lambda x: fake.sentences(nb=1))
+    source = factory.LazyAttribute(lambda x: ' '.join(fake.sentences(nb=1)))
+    reference = factory.LazyAttribute(lambda x: ' '.join(fake.sentences(nb=1)))
     rating = factory.Sequence(lambda n: mod_rating(n))
 
 
