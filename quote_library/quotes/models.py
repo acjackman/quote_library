@@ -16,6 +16,7 @@ class Quote(TimeStampedModel):
 
     text = models.TextField()
     author = models.ForeignKey(Author)
+    added = models.DateTimeField()
     date = models.DateTimeField(null=True, blank=True)
     source = models.TextField(blank=True)
     reference = models.TextField(blank=True)
@@ -28,7 +29,9 @@ class Quote(TimeStampedModel):
             MaxValueValidator(10, "the maximum rating is 10"),
         ],
     )
-    added = models.DateTimeField()
+
+    def __str__(self):
+        return '"%s"' % (' '.join(self.text.split()[1:5]))
 
     def get_absolute_url(self):
         return reverse('quotes:detail', args=[str(self.id)])

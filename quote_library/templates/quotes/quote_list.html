@@ -2,16 +2,16 @@
 {% load static %}
 {% load markdown_deux_tags %}
 
-{% block title %}Authors{% endblock %}
+{% block title %}Quotes{% endblock %}
 
 {% block content %}
 <div class="container">
-<h1>Authors</h1>
+<h1>Quotes</h1>
 <ul>
-{% for author in object_list %}
-    <li><a href="{% url 'authors:detail' author.pk %}">{{ author.full_name }}</a></li>
+{% for quote in object_list %}
+    <li><a href="{% url 'quotes:detail' quote.pk %}">"{{ quote.text }}"</a></li>
 {% empty %}
-    <li>No authors yet.</li>
+    <li>No quotes yet.</li>
 {% endfor %}
 </ul>
 </div>

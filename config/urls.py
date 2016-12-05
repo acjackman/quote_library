@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^users/', include('quote_library.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 
+    # API URLs
+    url(r'^api/v1/', include('quote_library.api.urls', namespace='v1')),
+
     # Application URLs
     url(r'authors/', include('quote_library.authors.urls', namespace='authors')),
     url(r'quotes/', include('quote_library.quotes.urls', namespace='quotes')),

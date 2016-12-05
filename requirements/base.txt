@@ -39,14 +39,14 @@ pytz==2016.7
 # Redis support
 django-redis==4.5.0
 redis>=2.10.5
-
-
+django-filter==1.0.1
+# Async Tasks
 celery==3.1.24
 
+# REST API Framework
+djangorestframework==3.5.3
+coreapi==2.1.1  # API Schema
 
-
-
-# Your custom requirements go here
 # Markdown
 markdown2==2.3.1
 django-markdown-deux==1.0.5
