@@ -48,6 +48,7 @@ LOCAL_APPS = (
     'quote_library.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'quote_library.authors',
+    'quote_library.quotes',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

@@ -1,8 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
+from model_utils.models import TimeStampedModel
 
-class Author(models.Model):
+
+class Author(TimeStampedModel):
 
     class Meta:
         verbose_name = "Author"

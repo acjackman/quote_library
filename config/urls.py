@@ -19,9 +19,9 @@ urlpatterns = [
     url(r'^users/', include('quote_library.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
 
-    # Your stuff: custom urls includes go here
-
+    # Application URLs
     url(r'authors/', include('quote_library.authors.urls', namespace='authors')),
+    url(r'quotes/', include('quote_library.quotes.urls', namespace='quotes')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
