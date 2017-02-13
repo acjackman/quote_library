@@ -1,7 +1,7 @@
 Developing with Docker
 ======================
 
-You can develop your application in a `Docker`_ container for simpler deployment onto bare Linux machines later. This instruction assumes an `Amazon Web Services`_ EC2 instance, but it should work on any machine with Docker > 1.3 and `Docker compose`_ installed.
+You can develop your application in a `Docker`_ container for simpler deployment onto bare Linux machines later. This instruction assumes an `Amazon Web Services`_ EC2 instance, but it should work on any machine with Docker > 1.3 and `Docker compose`_ installed.t
 
 .. _Docker: https://www.docker.com/
 .. _Amazon Web Services: http://aws.amazon.com/
