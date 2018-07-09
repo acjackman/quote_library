@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% load markdown_deux_tags %}
+
+{% block title %}{{ object.full_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>Quote Detail</h1>
+
+<blockquote>
+{{ object.text }}
+</blockquote>
+
+
+
+<h2>Details</h2>
+<p>
+  {% if object.date %} Date: {{ object.date|date }}<br /> {% endif %}
+  {% if object.source %} Source: {{ object.source }}<br /> {% endif %}
+  {% if object.reference %}
+    Reference{% if object.verified %}
+     (Verified)
+    {% endif %}: {{ object.reference }}<br />
+  {% endif %}
+  {% if object.rating %} Rating: {{ object.rating }}<br /> {% endif %}
+  {% if object.added %} Added: {{ object.added|date }}{% endif %}
+</p>
+
+{% if request.user.is_staff %}
+<!-- Action buttons -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <a class="btn btn-primary" href="{% url 'quotes:update' object.pk %}" role="button">Update</a>
+    <a class="btn btn-danger" href="{% url 'quotes:delete' object.pk %}" role="button">Delete</a>
+  </div>
+
+</div>
+<!-- End Action buttons -->
+{% endif %}
+
+</div>
+{% endblock content %}
+
+

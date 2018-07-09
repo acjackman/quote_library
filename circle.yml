@@ -1,0 +1,40 @@
+machine:
+  services:
+    - docker
+    - postgresql
+  python:
+    version: 3.5.2
+  environment:
+    AWS_DEFAULT_REGION: us-west-2
+    DATABASE_URL: postgres://ubuntu@127.0.0.1/circle_test
+    DJANGO_SETTINGS_MODULE: config.settings.test
+
+dependencies:
+  pre:
+    - pip install awscli
+  override:
+    - pip install -r requirements/test.txt
+    - docker build --rm=false -f compose/django/Dockerfile -t quote_library:$CIRCLE_SHA1 .
+
+test:
+  pre:
+    - mkdir -p $CIRCLE_TEST_REPORTS/django
+  override:
+    - pytest quote_library/ --junitxml=$CIRCLE_TEST_REPORTS/django/result.xml
+
+
+deployment:
+  production:
+    branch: master
+    commands:
+      # Push new version as latest
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "latest"
+      # Push new version tagged with the commit SHA1 for historical reference
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"
+  staging:
+    branch: django
+    commands:
+      # Push new version as latest
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "latest"
+      # Push new version tagged with the commit SHA1 for historical reference
+      - deploy/push_to_registry.sh "$CIRCLE_SHA1" "$CIRCLE_SHA1"

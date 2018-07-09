@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load markdown_deux_tags %}
+
+{% block title %}Quotes{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>Quotes</h1>
+<ul>
+{% for quote in object_list %}
+    <li><a href="{% url 'quotes:detail' quote.pk %}">"{{ quote.text }}"</a></li>
+{% empty %}
+    <li>No quotes yet.</li>
+{% endfor %}
+</ul>
+</div>
+{% endblock content %}
